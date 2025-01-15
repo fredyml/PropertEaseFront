@@ -9,7 +9,7 @@ const PropertyGrid = ({ filters }) => {
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await getProperties(filters);  // Pasar los filtros aquí
+        const response = await getProperties(filters);  
         setProperties(response.data);
       } catch (error) {
         console.error("Error fetching properties:", error);
@@ -17,7 +17,7 @@ const PropertyGrid = ({ filters }) => {
     };
 
     fetchProperties();
-  }, [filters]);  // Ejecutar cada vez que los filtros cambian
+  }, [filters]); 
 
   return (
     <div className="property-grid">
