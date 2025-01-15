@@ -10,7 +10,6 @@ const PropertyCard = ({ property }) => {
         <p><strong>Code Internal:</strong> {property.codeInternal}</p>
         <p><strong>Year:</strong> {property.year}</p>
   
-        {/* Renderizar las imágenes de las propiedades */}
         <div className="property-images">
           {property.images && property.images.length > 0 ? (
             property.images.map((image, index) =>

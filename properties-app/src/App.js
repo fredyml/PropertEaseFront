@@ -10,21 +10,20 @@ const App = () => {
     maxPrice: ''
   });
 
-  
+  // Manejar cambios en los filtros
   const handleFilterChange = (newFilters) => {
-    setFilters(newFilters); 
+    setFilters(newFilters);
   };
 
-  
+  // Manejar la búsqueda de propiedades
   const handleSearch = () => {
     console.log('Buscando propiedades con filtros:', filters);
-   
   };
 
   return (
     <div className="App">
       <Filters filters={filters} handleFilterChange={handleFilterChange} handleSearch={handleSearch} />
-      <PropertyGrid filters={filters} />
+      <PropertyGrid filters={filters} />  {/* Pasar los filtros a PropertyGrid */}
     </div>
   );
 };
