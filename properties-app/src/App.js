@@ -1,28 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { getProperties } from './services/propertyService';
+import React, { useState } from 'react';
 import Filters from './components/Filters/Filters';
 import PropertyGrid from './components/PropertyGrid/PropertyGrid';
-import PropertyDetails from './components/PropertyDetails/PropertyDetails';
 
 const App = () => {
-  const [properties, setProperties] = useState([]);
-  const [selectedProperty, setSelectedProperty] = useState(null);
+  const [filters, setFilters] = useState({
+    name: '',
+    address: '',
+    minPrice: '',
+    maxPrice: ''
+  });
 
-  const fetchProperties = (filters) => {
-    getProperties(filters).then((response) => setProperties(response.data));
+  
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters); 
   };
 
-  useEffect(() => {
-    fetchProperties();
-  }, []);
+  
+  const handleSearch = () => {
+    console.log('Buscando propiedades con filtros:', filters);
+   
+  };
 
   return (
-    <div>
-      <Filters onFilter={fetchProperties} />
-      <PropertyGrid properties={properties} onViewDetails={setSelectedProperty} />
-      {selectedProperty && (
-        <PropertyDetails propertyId={selectedProperty} onClose={() => setSelectedProperty(null)} />
-      )}
+    <div className="App">
+      <Filters filters={filters} handleFilterChange={handleFilterChange} handleSearch={handleSearch} />
+      <PropertyGrid filters={filters} />
     </div>
   );
 };

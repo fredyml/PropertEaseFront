@@ -1,24 +1,35 @@
 import React from 'react';
 import './../../styles/propertyCard.css';
 
-const PropertyCard = ({ property, onViewDetails }) => {
+const PropertyCard = ({ property }) => {
     return (
-      <div className="card shadow-sm">
-        <img
-          src={property.image}
-          className="card-img-top"
-          alt={property.name || 'Property Image'}
-        />
-        <div className="card-body">
-          <h5 className="card-title">{property.name}</h5>
-          <p className="card-text">{property.address}</p>
-          <p className="text-success fw-bold">${property.price}</p>
-          <button
-            className="btn btn-outline-primary btn-sm"
-            onClick={() => onViewDetails(property.id)}
-          >
-            View Details
-          </button>
+      <div className="property-card">
+        <h2>{property.name}</h2>
+        <p>{property.address}</p>
+        <p><strong>Price:</strong> ${property.price}</p>
+        <p><strong>Code Internal:</strong> {property.codeInternal}</p>
+        <p><strong>Year:</strong> {property.year}</p>
+  
+        {/* Renderizar las imágenes de las propiedades */}
+        <div className="property-images">
+          {property.images && property.images.length > 0 ? (
+            property.images.map((image, index) =>
+              image.enabled ? (
+                <img
+                  key={index}
+                  src={image.file}
+                  alt={`Property Image ${index + 1}`}
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    marginBottom: '10px',
+                  }}
+                />
+              ) : null
+            )
+          ) : (
+            <p>No images available</p>
+          )}
         </div>
       </div>
     );
